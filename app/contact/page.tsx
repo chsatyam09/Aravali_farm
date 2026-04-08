@@ -3,9 +3,6 @@
 import React, { useState } from 'react'
 import Navigation from '@/app/components/Navigation'
 import Footer from '@/app/components/Footer'
-import ScrollToTopButton from '@/app/components/ScrollToTopButton'
-import HorizontalContactCard from '@/app/components/HorizontalContactCard'
-
 // Success Modal Component
 function SuccessModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const phoneNumbers = [
@@ -99,11 +96,12 @@ function SuccessModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
             width: '60px',
             height: '60px',
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            background: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-sage) 100%)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '2rem'
+            fontSize: '2rem',
+            color: 'white'
           }}>
             ✓
           </div>
@@ -217,7 +215,7 @@ function SuccessModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
           style={{
             width: '100%',
             padding: '0.75rem 1.25rem',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            background: 'var(--color-accent)',
             color: 'white',
             border: 'none',
             borderRadius: '8px',
@@ -228,10 +226,12 @@ function SuccessModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
           }}
           onMouseOver={(e) => {
             e.currentTarget.style.transform = 'translateY(-2px)'
-            e.currentTarget.style.boxShadow = '0 8px 20px rgba(102, 126, 234, 0.4)'
+            e.currentTarget.style.background = 'var(--color-accent-hover)'
+            e.currentTarget.style.boxShadow = '0 8px 20px rgba(166, 124, 91, 0.35)'
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.background = 'var(--color-accent)'
             e.currentTarget.style.boxShadow = 'none'
           }}
         >
@@ -468,6 +468,12 @@ export default function ContactPage() {
     checkOutDate: '',
     message: '',
   })
+  const [bookingSearch, setBookingSearch] = useState({
+    checkInDate: '',
+    checkOutDate: '',
+    numberOfPeople: '',
+    phone: '',
+  })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
   const [showSuccessModal, setShowSuccessModal] = useState(false)
@@ -478,12 +484,78 @@ export default function ContactPage() {
     checkInDate: '',
     checkOutDate: '',
   })
+  const [bookingErrors, setBookingErrors] = useState({
+    checkInDate: '',
+    checkOutDate: '',
+    numberOfPeople: '',
+    phone: '',
+  })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
     // Clear error when user starts typing
     if (errors[e.target.name as keyof typeof errors]) {
       setErrors({ ...errors, [e.target.name]: '' })
+    }
+  }
+
+  const handleBookingSearchChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setBookingSearch({ ...bookingSearch, [e.target.name]: e.target.value })
+    // Clear error when user starts typing
+    if (bookingErrors[e.target.name as keyof typeof bookingErrors]) {
+      setBookingErrors({ ...bookingErrors, [e.target.name]: '' })
+    }
+  }
+
+  const handleBookingSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    const newErrors = {
+      checkInDate: '',
+      checkOutDate: '',
+      numberOfPeople: '',
+      phone: '',
+    }
+    
+    let hasErrors = false
+
+    if (!bookingSearch.checkInDate) {
+      newErrors.checkInDate = 'Check-in date is required'
+      hasErrors = true
+    }
+
+    if (!bookingSearch.checkOutDate) {
+      newErrors.checkOutDate = 'Check-out date is required'
+      hasErrors = true
+    } else if (bookingSearch.checkInDate && bookingSearch.checkOutDate) {
+      const checkIn = new Date(bookingSearch.checkInDate)
+      const checkOut = new Date(bookingSearch.checkOutDate)
+      if (checkOut <= checkIn) {
+        newErrors.checkOutDate = 'Check-out date must be after check-in date'
+        hasErrors = true
+      }
+    }
+
+    if (!bookingSearch.numberOfPeople) {
+      newErrors.numberOfPeople = 'Number of people is required'
+      hasErrors = true
+    }
+
+    if (!bookingSearch.phone.trim()) {
+      newErrors.phone = 'Phone number is required'
+      hasErrors = true
+    } else if (!/^[0-9]{10}$/.test(bookingSearch.phone.replace(/\s+/g, ''))) {
+      newErrors.phone = 'Phone number must be exactly 10 digits'
+      hasErrors = true
+    }
+
+    setBookingErrors(newErrors)
+    
+    if (!hasErrors) {
+      // Here you can handle the booking search submission
+      console.log('Booking search:', bookingSearch)
+      // You can navigate to a booking page or show results
+      alert('Search functionality will be implemented here!')
     }
   }
 
@@ -607,132 +679,52 @@ export default function ContactPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section style={{
-        padding: '2rem 0',
+      <section className="contact-hero-section" style={{
+        padding: 'clamp(3rem, 8vw, 6rem) 0',
         position: 'relative',
         overflow: 'hidden',
-        height: '60vh',
-        minHeight: '500px'
+        backgroundColor: 'var(--color-sage-dark)',
+        background: 'linear-gradient(135deg, var(--color-sage-dark) 0%, var(--color-sage) 100%)',
+        minHeight: 'clamp(250px, 35vh, 350px)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
       }}>
-        {/* Image Background */}
-        <img 
-          // src="/Images/Aravali Farm Images/Pool-2.png"
- src="/Images/Aravali Farm Images/property-2.jpg"
-        
-          alt="Contact us"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            zIndex: 0
-          }}
-        />
-        {/* Dark overlay for better text visibility */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.4)',
-          zIndex: 1
-        }}></div>
-        {/* Decorative Background Elements */}
-        <div style={{
-          position: 'absolute',
-          top: '-50px',
-          right: '-50px',
-          width: '200px',
-          height: '200px',
-          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%)',
-          borderRadius: '50%',
-          zIndex: 2
-        }}></div>
-        <div style={{
-          position: 'absolute',
-          bottom: '-100px',
-          left: '-100px',
-          width: '300px',
-          height: '300px',
-          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%)',
-          borderRadius: '50%',
-          zIndex: 2
-        }}></div>
-        
-        <div style={{
+        <div className="contact-hero-container" style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          padding: '0 1rem',
+          padding: 'clamp(1rem, 3vw, 2rem)',
           position: 'relative',
           zIndex: 2,
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center'
+          width: '100%',
+          textAlign: 'center'
         }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '2rem',
-            alignItems: 'center',
-            width: '100%',
-            height: '100%'
+          {/* Main Title */}
+          <h1 style={{
+            fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+            color: '#ffffff',
+            margin: '0 0 1rem 0',
+            fontWeight: '700',
+            letterSpacing: '0.02em',
+            lineHeight: '1.2'
           }}>
-            {/* Left Side - Unique Shaped Image */}
-            <div style={{
-              position: 'relative',
-              zIndex: 3,
-              display: 'flex',
-              height: '100%'
-            }}>
-              {/* <div style={{
-                position: 'relative',
-                marginLeft:'5px',
-                marginTop:'120px',
-                width: '100%',
-                maxWidth: '400px',
-                height: '280px',
-                background: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '25px 60px 25px 60px',
-                padding: '15px',
-                boxShadow: '0 15px 30px rgba(0, 0, 0, 0.3)',
-                border: '2px solid rgba(255, 255, 255, 0.2)',
-                transform: 'rotate(-2deg)',
-                transition: 'all 0.4s ease'
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.transform = 'rotate(0deg) scale(1.02)';
-                e.currentTarget.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.4)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.transform = 'rotate(-2deg) scale(1)';
-                e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)';
-              }}>
-                
-              </div> */}
-            </div>
-
-            {/* Right Side - Contact Details */}
-            <div style={{
-              padding: '0.5rem 0',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: '50%'
-            }}>
-              {/* Horizontal Contact Card */}
-              <div style={{
-                width: '100%',
-                maxWidth: '500px'
-              }}>
-                <HorizontalContactCard />
-              </div>
-            </div>
-          </div>
+            Book your next stay
+          </h1>
+          
+          {/* Subtitle */}
+          <p style={{
+            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+            color: '#ffffff',
+            margin: '0',
+            fontWeight: '400',
+            opacity: '0.95',
+            lineHeight: '1.5',
+            maxWidth: '600px',
+            marginLeft: 'auto',
+            marginRight: 'auto'
+          }}>
+            
+          </p>
         </div>
       </section>
 
@@ -742,10 +734,376 @@ export default function ContactPage() {
         onClose={() => setShowSuccessModal(false)} 
       />
 
+      {/* Booking Search Section */}
+      <section style={{
+        padding: '0',
+        position: 'relative',
+        marginTop: '-80px',
+        marginBottom: '4rem',
+        zIndex: 10
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 1rem'
+        }}>
+          <form onSubmit={handleBookingSearch} style={{
+            background: 'var(--color-card)',
+            borderRadius: '12px',
+            border: '3px solid var(--color-accent)',
+            boxShadow: '0 20px 60px rgba(45, 42, 38, 0.12)',
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'stretch',
+            gap: '0',
+            position: 'relative',
+            zIndex: 10,
+            maxWidth: '100%'
+          }} className="booking-search-form">
+            {/* Check-in Date Field */}
+            <div style={{
+              flex: '1',
+              padding: '0.75rem 1rem',
+              borderRight: '1px solid #e5e7eb',
+              background: '#ffffff',
+              position: 'relative',
+              minWidth: '200px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}>
+              <label style={{
+                fontSize: '0.8125rem',
+                color: '#374151',
+                marginBottom: '0.25rem',
+                fontWeight: '500',
+                display: 'block'
+              }}>
+                Check-in Date *
+              </label>
+              <div style={{
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center',
+                width: '100%'
+              }}>
+                {!bookingSearch.checkInDate && (
+                  <span style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    fontSize: '0.95rem',
+                    color: '#9ca3af',
+                    pointerEvents: 'none',
+                    zIndex: 0
+                  }}>
+                    dd/mm/yyyy
+                  </span>
+                )}
+                <input
+                  type="date"
+                  name="checkInDate"
+                  value={bookingSearch.checkInDate}
+                  onChange={handleBookingSearchChange}
+                  min={new Date().toISOString().split('T')[0]}
+                  style={{
+                    width: '100%',
+                    border: 'none',
+                    outline: 'none',
+                    background: 'transparent',
+                    fontSize: '0.95rem',
+                    color: '#111827',
+                    padding: '0.35rem 0.5rem 0.35rem 0',
+                    fontFamily: 'inherit',
+                    cursor: 'pointer',
+                    flex: 1,
+                    position: 'relative',
+                    zIndex: 1,
+                    opacity: bookingSearch.checkInDate ? 1 : 0
+                  }}
+                />
+                <span style={{
+                  fontSize: '1.25rem',
+                  color: '#6b7280',
+                  marginLeft: '0.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  flexShrink: 0,
+                  pointerEvents: 'none',
+                  position: 'relative',
+                  zIndex: 2
+                }}>📅</span>
+              </div>
+              {bookingErrors.checkInDate && (
+                <div style={{
+                  color: '#ef4444',
+                  fontSize: '0.75rem',
+                  marginTop: '0.25rem'
+                }}>{bookingErrors.checkInDate}</div>
+              )}
+            </div>
+
+            {/* Check-out Date Field */}
+            <div style={{
+              flex: '1',
+              padding: '0.75rem 1rem',
+              borderRight: '1px solid #e5e7eb',
+              background: '#ffffff',
+              position: 'relative',
+              minWidth: '200px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}>
+              <label style={{
+                fontSize: '0.8125rem',
+                color: '#374151',
+                marginBottom: '0.25rem',
+                fontWeight: '500',
+                display: 'block'
+              }}>
+                Check-out Date *
+              </label>
+              <div style={{
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center',
+                width: '100%'
+              }}>
+                {!bookingSearch.checkOutDate && (
+                  <span style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    fontSize: '0.95rem',
+                    color: '#9ca3af',
+                    pointerEvents: 'none',
+                    zIndex: 0
+                  }}>
+                    dd/mm/yyyy
+                  </span>
+                )}
+                <input
+                  type="date"
+                  name="checkOutDate"
+                  value={bookingSearch.checkOutDate}
+                  onChange={handleBookingSearchChange}
+                  min={bookingSearch.checkInDate || new Date().toISOString().split('T')[0]}
+                  style={{
+                    width: '100%',
+                    border: 'none',
+                    outline: 'none',
+                    background: 'transparent',
+                    fontSize: '0.95rem',
+                    color: '#111827',
+                    padding: '0.35rem 0.5rem 0.35rem 0',
+                    fontFamily: 'inherit',
+                    cursor: 'pointer',
+                    flex: 1,
+                    position: 'relative',
+                    zIndex: 1,
+                    opacity: bookingSearch.checkOutDate ? 1 : 0
+                  }}
+                />
+                <span style={{
+                  fontSize: '1.25rem',
+                  color: '#6b7280',
+                  marginLeft: '0.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  flexShrink: 0,
+                  pointerEvents: 'none',
+                  position: 'relative',
+                  zIndex: 2
+                }}>📅</span>
+              </div>
+              {bookingErrors.checkOutDate && (
+                <div style={{
+                  color: '#ef4444',
+                  fontSize: '0.75rem',
+                  marginTop: '0.25rem'
+                }}>{bookingErrors.checkOutDate}</div>
+              )}
+            </div>
+
+            {/* Number of Guests Field */}
+            <div style={{
+              flex: '1',
+              padding: '0.75rem 1rem',
+              borderRight: '1px solid #e5e7eb',
+              background: '#ffffff',
+              position: 'relative',
+              minWidth: '200px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}>
+              <label style={{
+                fontSize: '0.8125rem',
+                color: '#374151',
+                marginBottom: '0.25rem',
+                fontWeight: '500',
+                display: 'block'
+              }}>
+                Number of Guests
+              </label>
+              <div style={{
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center',
+                width: '100%'
+              }}>
+                <select
+                  name="numberOfPeople"
+                  value={bookingSearch.numberOfPeople}
+                  onChange={handleBookingSearchChange}
+                  style={{
+                    width: '100%',
+                    border: 'none',
+                    outline: 'none',
+                    background: 'transparent',
+                    fontSize: '0.95rem',
+                    color: bookingSearch.numberOfPeople ? '#111827' : '#9ca3af',
+                    padding: '0.35rem 2rem 0.35rem 0',
+                    fontFamily: 'inherit',
+                    appearance: 'none',
+                    cursor: 'pointer',
+                    flex: 1
+                  }}
+                >
+                  <option value="" disabled style={{ color: '#9ca3af' }}>Select guests</option>
+                  <option value="1-5">1-5</option>
+                  <option value="6-8">6-8</option>
+                  <option value="9-12">9-12</option>
+                  <option value="13-17">13-17</option>
+                  <option value="18-25">18-25</option>
+                  <option value="25-30">25-30</option>
+                  <option value="30+">30+</option>
+                  <option value="50+">50+</option>
+                  <option value="100+">100+</option>
+                </select>
+                <span style={{
+                  position: 'absolute',
+                  right: '0.5rem',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  pointerEvents: 'none',
+                  color: '#6b7280',
+                  fontSize: '0.875rem'
+                }}>▼</span>
+              </div>
+              {bookingErrors.numberOfPeople && (
+                <div style={{
+                  color: '#ef4444',
+                  fontSize: '0.75rem',
+                  marginTop: '0.25rem'
+                }}>{bookingErrors.numberOfPeople}</div>
+              )}
+            </div>
+
+            {/* Phone Number Field */}
+            <div style={{
+              flex: '1',
+              padding: '0.75rem 1rem',
+              borderRight: '1px solid #e5e7eb',
+              background: '#ffffff',
+              position: 'relative',
+              minWidth: '200px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}>
+              <label style={{
+                fontSize: '0.8125rem',
+                color: '#374151',
+                marginBottom: '0.25rem',
+                fontWeight: '500',
+                display: 'block'
+              }}>
+                Phone Number
+              </label>
+              <div style={{
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center',
+                width: '100%'
+              }}>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={bookingSearch.phone}
+                  onChange={handleBookingSearchChange}
+                  maxLength={10}
+                  placeholder="Enter phone number"
+                  style={{
+                    width: '100%',
+                    border: 'none',
+                    outline: 'none',
+                    background: 'transparent',
+                    fontSize: '0.95rem',
+                    color: '#111827',
+                    padding: '0.35rem 0',
+                    fontFamily: 'inherit',
+                    flex: 1
+                  }}
+                />
+              </div>
+              {bookingErrors.phone && (
+                <div style={{
+                  color: '#ef4444',
+                  fontSize: '0.75rem',
+                  marginTop: '0.25rem'
+                }}>{bookingErrors.phone}</div>
+              )}
+            </div>
+
+            {/* Search Button */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'stretch',
+              background: 'var(--color-card)'
+            }}>
+              <button
+                type="submit"
+                style={{
+                  padding: '0.75rem 3.25rem',
+                  minWidth: '120px',
+                  background: 'var(--color-accent)',
+                  color: '#ffffff',
+                  border: 'none',
+                  borderRadius: '0',
+                  fontSize: '1rem',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  whiteSpace: 'nowrap',
+                  fontFamily: 'inherit',
+                  alignSelf: 'stretch',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.background = 'var(--color-accent-hover)'
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.background = 'var(--color-accent)'
+                }}
+              >
+                Search
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
       {/* Contact Form Section */}
       <section style={{
         padding: '4rem 0',
-        background: '#f8fafc'
+        background: 'var(--color-cream-section)'
       }}>
         <div style={{
           maxWidth: '1000px',
@@ -758,7 +1116,7 @@ export default function ContactPage() {
           }}>
             <h2 style={{
               fontSize: 'clamp(2rem, 5vw, 3rem)',
-              color: '#1a202c',
+              color: 'var(--color-text)',
               marginBottom: '1rem',
               fontWeight: '700'
             }}>
@@ -767,13 +1125,13 @@ export default function ContactPage() {
             <div style={{
               width: '80px',
               height: '4px',
-              background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
+              background: 'linear-gradient(90deg, var(--color-accent) 0%, var(--color-sage) 100%)',
               borderRadius: '2px',
               margin: '0 auto 1.5rem'
             }}></div>
             <p style={{
               fontSize: '1.1rem',
-              color: '#4a5568',
+              color: 'var(--color-text-muted)',
               maxWidth: '600px',
               margin: '0 auto',
               lineHeight: '1.6'
@@ -783,11 +1141,11 @@ export default function ContactPage() {
           </div>
 
           <div style={{
-            background: '#ffffff',
+            background: 'var(--color-card)',
             borderRadius: '16px',
             padding: '3rem',
-            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
-            border: '1px solid rgba(0, 0, 0, 0.05)'
+            boxShadow: '0 10px 30px rgba(45, 42, 38, 0.08)',
+            border: '1px solid var(--color-border)'
           }}>
             {submitStatus === 'success' && (
               <div style={{
@@ -844,8 +1202,8 @@ export default function ContactPage() {
                       background: '#ffffff'
                     }}
                     onFocus={(e) => {
-                      e.target.style.borderColor = '#667eea';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                      e.target.style.borderColor = 'var(--color-accent)';
+                      e.target.style.boxShadow = '0 0 0 3px rgba(166, 124, 91, 0.2)';
                     }}
                     onBlur={(e) => {
                       if (errors.name) {
@@ -891,8 +1249,8 @@ export default function ContactPage() {
                       background: '#ffffff'
                     }}
                     onFocus={(e) => {
-                      e.target.style.borderColor = '#667eea';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                      e.target.style.borderColor = 'var(--color-accent)';
+                      e.target.style.boxShadow = '0 0 0 3px rgba(166, 124, 91, 0.2)';
                     }}
                     onBlur={(e) => {
                       if (errors.phone) {
@@ -939,8 +1297,8 @@ export default function ContactPage() {
                       background: '#ffffff'
                     }}
                     onFocus={(e) => {
-                      e.target.style.borderColor = '#667eea';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                      e.target.style.borderColor = 'var(--color-accent)';
+                      e.target.style.boxShadow = '0 0 0 3px rgba(166, 124, 91, 0.2)';
                     }}
                     onBlur={(e) => {
                       if (errors.email) {
@@ -985,8 +1343,8 @@ export default function ContactPage() {
                       cursor: 'pointer'
                     }}
                     onFocus={(e) => {
-                      e.target.style.borderColor = '#667eea';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                      e.target.style.borderColor = 'var(--color-accent)';
+                      e.target.style.boxShadow = '0 0 0 3px rgba(166, 124, 91, 0.2)';
                     }}
                     onBlur={(e) => {
                       e.target.style.borderColor = '#e5e7eb';
@@ -994,9 +1352,15 @@ export default function ContactPage() {
                     }}
                   >
                     <option value="">Select guests</option>
-                    {Array.from({ length: 20 }, (_, i) => i + 1).map(num => (
-                      <option key={num} value={num}>{num} {num === 1 ? 'Guest' : 'Guests'}</option>
-                    ))}
+                    <option value="1-5">1-5</option>
+                    <option value="6-8">6-8</option>
+                    <option value="9-12">9-12</option>
+                    <option value="13-17">13-17</option>
+                    <option value="18-25">18-25</option>
+                    <option value="25-30">25-30</option>
+                    <option value="30+">30+</option>
+                    <option value="50+">50+</option>
+                    <option value="100+">100+</option>
                   </select>
                 </div>
               </div>
@@ -1027,8 +1391,8 @@ export default function ContactPage() {
                       background: '#ffffff'
                     }}
                     onFocus={(e) => {
-                      e.target.style.borderColor = '#667eea';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                      e.target.style.borderColor = 'var(--color-accent)';
+                      e.target.style.boxShadow = '0 0 0 3px rgba(166, 124, 91, 0.2)';
                     }}
                     onBlur={(e) => {
                       if (errors.checkInDate) {
@@ -1073,8 +1437,8 @@ export default function ContactPage() {
                       background: '#ffffff'
                     }}
                     onFocus={(e) => {
-                      e.target.style.borderColor = '#667eea';
-                      e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                      e.target.style.borderColor = 'var(--color-accent)';
+                      e.target.style.boxShadow = '0 0 0 3px rgba(166, 124, 91, 0.2)';
                     }}
                     onBlur={(e) => {
                       if (errors.checkOutDate) {
@@ -1121,8 +1485,8 @@ export default function ContactPage() {
                     lineHeight: '1.5'
                   }}
                   onFocus={(e) => {
-                    e.target.style.borderColor = '#667eea';
-                    e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                    e.target.style.borderColor = 'var(--color-accent)';
+                    e.target.style.boxShadow = '0 0 0 3px rgba(166, 124, 91, 0.2)';
                   }}
                   onBlur={(e) => {
                     e.target.style.borderColor = '#e5e7eb';
@@ -1137,8 +1501,8 @@ export default function ContactPage() {
                 disabled={isSubmitting}
                 style={{
                   background: isSubmitting 
-                    ? '#a0aec0' 
-                    : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    ? 'var(--color-border)' 
+                    : 'var(--color-accent)',
                   color: 'white',
                   padding: '1rem 2rem',
                   borderRadius: '8px',
@@ -1147,8 +1511,8 @@ export default function ContactPage() {
                   cursor: isSubmitting ? 'not-allowed' : 'pointer',
                   transition: 'all 0.3s ease',
                   boxShadow: isSubmitting 
-                    ? '0 4px 15px rgba(160, 174, 192, 0.3)' 
-                    : '0 4px 15px rgba(102, 126, 234, 0.3)',
+                    ? '0 4px 15px rgba(92, 107, 90, 0.2)' 
+                    : '0 4px 15px rgba(166, 124, 91, 0.35)',
                   border: 'none',
                   alignSelf: 'center',
                   minWidth: '200px'
@@ -1156,14 +1520,16 @@ export default function ContactPage() {
                 onMouseOver={(e) => {
                   if (!isSubmitting) {
                     e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.4)';
+                    e.currentTarget.style.background = 'var(--color-accent-hover)';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(166, 124, 91, 0.4)';
                   }
                 }}
                 onMouseOut={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.background = isSubmitting ? 'var(--color-border)' : 'var(--color-accent)';
                   e.currentTarget.style.boxShadow = isSubmitting 
-                    ? '0 4px 15px rgba(160, 174, 192, 0.3)' 
-                    : '0 4px 15px rgba(102, 126, 234, 0.3)';
+                    ? '0 4px 15px rgba(92, 107, 90, 0.2)' 
+                    : '0 4px 15px rgba(166, 124, 91, 0.35)';
                 }}
               >
                 {isSubmitting ? (
@@ -1446,7 +1812,9 @@ export default function ContactPage() {
         background: '#ffffff'
       }}>
         <div style={{
-          padding: '0 2rem'
+          padding: '0 2rem',
+          maxWidth: '1400px',
+          margin: '0 auto'
         }}>
           <h2 style={{
             fontSize: 'clamp(2rem, 5vw, 3rem)',
@@ -1464,30 +1832,92 @@ export default function ContactPage() {
             borderRadius: '2px',
             margin: '0 auto 3rem'
           }}></div>
-          <div style={{
-            borderRadius: '16px',
-            overflow: 'hidden',
-            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
-            height: '530px',
-            border: '2px solid rgba(0, 0, 0, 0.05)',
-            width: '100%'
-          }}>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4446.41228342973!2d76.92335707633261!3d28.291821375852507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d3bd8d81db18d%3A0x289dc2edc4500c5f!2sAravali%20Farm!5e1!3m2!1sen!2sin!4v1760944508029!5m2!1sen!2sin"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <div 
+            className="maps-container"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '2rem',
+              width: '100%'
+            }}>
+            {/* Aravali Farm Gurgaon */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem'
+            }}>
+              <h3 style={{
+                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+                color: '#000000',
+                textAlign: 'center',
+                fontWeight: '600',
+                margin: 0
+              }}>
+                Aravali Farm Gurgaon
+              </h3>
+              <div 
+                className="map-wrapper"
+                style={{
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+                  height: '530px',
+                  border: '2px solid rgba(0, 0, 0, 0.05)',
+                  width: '100%'
+                }}>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4446.41228342973!2d76.92335707633261!3d28.291821375852507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d3bd8d81db18d%3A0x289dc2edc4500c5f!2sAravali%20Farm!5e1!3m2!1sen!2sin!4v1760944508029!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+
+            {/* Aravali Farm Noida */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem'
+            }}>
+              <h3 style={{
+                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+                color: '#000000',
+                textAlign: 'center',
+                fontWeight: '600',
+                margin: 0
+              }}>
+                Aravali Farm Noida
+              </h3>
+              <div 
+                className="map-wrapper"
+                style={{
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+                  height: '530px',
+                  border: '2px solid rgba(0, 0, 0, 0.05)',
+                  width: '100%'
+                }}>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.9369393994575!2d77.37895689999999!3d28.481445700000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce909b005f63b%3A0x19d28b6b87a3e525!2sAravali%20Farm%20Noida!5e0!3m2!1sen!2sin!4v1768080435913!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <Footer />
-      <ScrollToTopButton />
-
       {/* Simplified Animations and Responsive Design */}
       <style jsx>{`
         @keyframes spin {
@@ -1503,47 +1933,124 @@ export default function ContactPage() {
         body {
           overflow-x: hidden;
         }
+
+        /* Booking search form styling */
+        .booking-search-form input[type="date"] {
+          position: relative;
+        }
+
+        .booking-search-form input[type="date"]::-webkit-calendar-picker-indicator {
+          opacity: 0;
+          position: absolute;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+          z-index: 1;
+        }
+
+        .booking-search-form input[type="date"]::-webkit-inner-spin-button,
+        .booking-search-form input[type="date"]::-webkit-clear-button {
+          display: none;
+        }
+
+        .booking-search-form input[type="date"]:not([value]):before {
+          content: attr(placeholder);
+          position: absolute;
+          color: #9ca3af;
+          pointer-events: none;
+        }
+
+        .booking-search-form input[type="tel"]::placeholder {
+          color: #9ca3af;
+          opacity: 1;
+        }
+
+        .booking-search-form input[type="tel"]::-webkit-input-placeholder {
+          color: #9ca3af;
+        }
+
+        .booking-search-form input[type="tel"]:-ms-input-placeholder {
+          color: #9ca3af;
+        }
+
+        .booking-search-form input[type="tel"]::-moz-placeholder {
+          color: #9ca3af;
+          opacity: 1;
+        }
+
+        .booking-search-form select {
+          cursor: pointer;
+        }
+
+        .booking-search-form select:focus {
+          outline: none;
+        }
+
+        .booking-search-form input:focus {
+          outline: none;
+        }
         
-        /* Contact page responsive styles */
+        /* Tablet and Small Laptop */
         @media (max-width: 1024px) {
-          section[style*="height: 60vh"] {
-            height: auto !important;
-            min-height: 60vh !important;
-            padding: 3rem 0 !important;
+          .contact-hero-section {
+            padding: clamp(2.5rem, 6vw, 5rem) 0 !important;
+            min-height: clamp(220px, 30vh, 300px) !important;
           }
           
-          div[style*="gridTemplateColumns: 1fr 1fr"] {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-          }
-          
-          div[style*="height: 280px"] {
-            height: 250px !important;
-          }
-          
-          div[style*="borderRadius: 25px 60px 25px 60px"] {
-            border-radius: 20px 50px 20px 50px !important;
-            transform: rotate(-1deg) !important;
-          }
-          
-          div[style*="borderRadius: 20px 50px 20px 50px"] {
-            border-radius: 15px 40px 15px 40px !important;
-          }
-          
-          div[style*="maxWidth: 400px"] {
-            max-width: 350px !important;
-          }
-          
-          div[style*="maxWidth: 500px"] {
-            max-width: 100% !important;
+          .contact-hero-container {
+            padding: clamp(0.75rem, 2vw, 1.5rem) !important;
           }
         }
         
         @media (max-width: 768px) {
-          section[style*="height: 60vh"] {
-            height: auto !important;
-            min-height: 50vh !important;
-            padding: 2rem 0 !important;
+          .contact-hero-section {
+            padding: clamp(2rem, 5vw, 4rem) 0 !important;
+            min-height: clamp(200px, 28vh, 280px) !important;
+          }
+          
+          .contact-hero-container {
+            padding: clamp(0.5rem, 2vw, 1rem) !important;
+          }
+
+          .booking-search-form {
+            flex-direction: column !important;
+            margin-top: -40px !important;
+            border-radius: 12px !important;
+          }
+
+          .booking-search-form > div {
+            border-right: none !important;
+            border-bottom: 1px solid #e5e7eb !important;
+            min-width: 100% !important;
+          }
+
+          .booking-search-form > div:last-of-type {
+            border-bottom: none !important;
+          }
+
+          .booking-search-form > div:last-of-type button {
+            width: 100% !important;
+            border-radius: 0 0 9px 9px !important;
+            padding: 1.25rem 2rem !important;
+          }
+
+          .booking-search-form label {
+            font-size: 0.8rem !important;
+          }
+
+          .booking-search-form input,
+          .booking-search-form select {
+            font-size: 0.9rem !important;
+          }
+          
+          .maps-container {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+          
+          .map-wrapper {
+            height: 400px !important;
           }
           
           div[style*="gridTemplateColumns: 1fr 1fr"] {
@@ -1641,10 +2148,13 @@ export default function ContactPage() {
         }
         
         @media (max-width: 480px) {
-          section[style*="height: 60vh"] {
-            height: auto !important;
-            min-height: 45vh !important;
-            padding: 1.5rem 0 !important;
+          .contact-hero-section {
+            padding: clamp(1.5rem, 4vw, 3rem) 0 !important;
+            min-height: clamp(180px, 25vh, 250px) !important;
+          }
+          
+          .contact-hero-container {
+            padding: clamp(0.5rem, 2vw, 1rem) !important;
           }
           
           div[style*="gridTemplateColumns: 1fr 1fr"] {
@@ -1775,6 +2285,15 @@ export default function ContactPage() {
         }
         
         @media (max-width: 360px) {
+          .contact-hero-section {
+            padding: clamp(1.25rem, 3vw, 2.5rem) 0 !important;
+            min-height: clamp(160px, 22vh, 220px) !important;
+          }
+          
+          .contact-hero-container {
+            padding: 0.5rem !important;
+          }
+          
           div[style*="gridTemplateColumns: repeat(auto-fit, minmax(280px, 1fr))"] {
             grid-template-columns: 1fr !important;
             gap: 1rem !important;

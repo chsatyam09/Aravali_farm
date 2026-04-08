@@ -1548,11 +1548,14 @@ export default function PropertyDetails({ propertyId }: PropertyDetailsProps) {
                 >
                   <option value="">Select guests</option>
                   <option value="1-5">1-5</option>
-                  <option value="6-10">6-10</option>
-                  <option value="11-20">11-20</option>
-                  <option value="21-30">21-30</option>
-                  <option value="31-50">31-50</option>
+                  <option value="6-8">6-8</option>
+                  <option value="9-12">9-12</option>
+                  <option value="13-17">13-17</option>
+                  <option value="18-25">18-25</option>
+                  <option value="25-30">25-30</option>
+                  <option value="30+">30+</option>
                   <option value="50+">50+</option>
+                  <option value="100+">100+</option>
                 </select>
               </div>
 

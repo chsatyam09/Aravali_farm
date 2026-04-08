@@ -1,9 +1,18 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Amenities at My Farm Gurgaon | Luxury Farm Stay Facilities',
-  description: 'Explore premium amenities at Aravali Farm - luxury farm in Gurgaon. Private pool, spacious lawns, modern rooms, BBQ area, and all amenities for perfect farm stay experience.',
-  keywords: 'farm amenities gurgaon, farm stay amenities, farm in gurgaon facilities, farm vacation amenities, farm rental gurgaon facilities, my farm gurgaon amenities, luxury farm amenities, farm stay facilities'
+  title: 'Farmhouse Amenities in Gurgaon | Private Pool, BBQ, Music System | Aravali Farm',
+  description: 'Explore premium amenities at our luxury farmhouse in Gurgaon. Private pool, spacious lawns, modern AC rooms, BBQ & bonfire area, premium sound system, WiFi, parking, and more. Perfect for farmhouse for party in Gurgaon.',
+  keywords: 'farmhouse amenities in gurgaon, farmhouse with pool in gurgaon, farmhouse with bbq setup, farmhouse with music system, farmhouse with indoor games, private pool farmhouse in delhi ncr, luxury farmhouse amenities gurgaon, farmhouse facilities gurgaon, farmhouse for party amenities',
+  openGraph: {
+    title: 'Farmhouse Amenities in Gurgaon | Private Pool, BBQ, Music System',
+    description: 'Explore premium amenities at our luxury farmhouse in Gurgaon. Private pool, spacious lawns, modern AC rooms, BBQ & bonfire area, and more.',
+    type: 'website',
+    url: 'https://aravalifarm.com/amenities',
+  },
+  alternates: {
+    canonical: 'https://aravalifarm.com/amenities',
+  },
 }
 
 export default function AmenitiesLayout({

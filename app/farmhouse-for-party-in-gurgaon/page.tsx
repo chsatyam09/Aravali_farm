@@ -2,7 +2,6 @@
 
 import Navigation from '@/app/components/Navigation'
 import Footer from '@/app/components/Footer'
-import ScrollToTopButton from '@/app/components/ScrollToTopButton'
 import Link from 'next/link'
 
 export default function PartyPage() {
@@ -28,7 +27,7 @@ export default function PartyPage() {
         {/* Image Background */}
         <img 
           src="/Images/Aravali Farm Images/Pool-1.png"
-          alt="Farmhouse party venue"
+          alt="Farmhouse for Party in Gurgaon with Private Pool - Premium Party Venue"
           style={{
             position: 'absolute',
             top: 0,
@@ -63,7 +62,7 @@ export default function PartyPage() {
             marginBottom: '1rem',
             textShadow: '0 2px 10px rgba(0, 0, 0, 0.3)'
           }}>
-            Host Your Dream Party at the Best Farm in Gurgaon - My Farm Experience
+            Farmhouse for Party in Gurgaon | Luxury Venue with Private Pool & Party Setup
           </h1>
           <p style={{
             fontSize: 'clamp(1rem, 2.5vw, 1.5rem)',
@@ -72,7 +71,7 @@ export default function PartyPage() {
             opacity: 0.95,
             textShadow: '0 1px 5px rgba(0, 0, 0, 0.3)'
           }}>
-            Transform your special occasions into unforgettable memories at Aravali Farm – the premier farm in Gurgaon for parties, farm stay experiences, and weekend farm retreats
+            Book the best farmhouse for party in Gurgaon. Perfect for birthday parties, weddings, corporate events, and weekend getaways. Private pool, spacious lawns, and premium amenities in Delhi NCR.
           </p>
         </div>
       </section>
@@ -83,15 +82,15 @@ export default function PartyPage() {
         maxWidth: '1200px',
         margin: '0 auto'
       }}>
-        <h2 style={{
-          fontSize: '2.5rem',
-          fontWeight: '700',
-          textAlign: 'center',
-          marginBottom: '3rem',
-          color: '#1a202c'
-        }}>
-          Why Choose Aravali Farm for Party in Gurgaon?
-        </h2>
+          <h2 style={{
+            fontSize: '2.5rem',
+            fontWeight: '700',
+            textAlign: 'center',
+            marginBottom: '3rem',
+            color: '#1a202c'
+          }}>
+            Why Choose Our Farmhouse for Party in Gurgaon?
+          </h2>
         
         <div style={{
           display: 'grid',
@@ -132,7 +131,7 @@ export default function PartyPage() {
               lineHeight: '1.7',
               fontSize: '1rem'
             }}>
-              Our farm in Gurgaon - My Farm experience can accommodate up to 50 guests with a beautiful lawn area perfect for farm stay celebrations and farm retreat gatherings.
+              Our farmhouse for party in Gurgaon can accommodate up to 50 guests with a beautiful 5000+ sq ft lawn area perfect for birthday parties, weddings, and family celebrations. Ideal for farmhouse for rent in Gurgaon.
             </p>
           </div>
 
@@ -169,7 +168,7 @@ export default function PartyPage() {
               lineHeight: '1.7',
               fontSize: '1rem'
             }}>
-              Enjoy a private swimming pool – perfect for pool parties and creating Instagram-worthy moments at our farmhouse.
+              Enjoy a private swimming pool – perfect for pool parties and creating memorable moments. Our farmhouse with pool in Gurgaon is ideal for pool party farmhouse near Delhi.
             </p>
           </div>
 
@@ -206,7 +205,7 @@ export default function PartyPage() {
               lineHeight: '1.7',
               fontSize: '1rem'
             }}>
-              Play music loud until 4 AM with our premium sound system – ideal for night parties and celebrations.
+              Play music loud until 4 AM with our premium sound system – ideal for night parties and celebrations. Farmhouse with music system perfect for farmhouse for birthday party in Gurgaon.
             </p>
           </div>
         </div>
@@ -237,12 +236,12 @@ export default function PartyPage() {
             gap: '2rem'
           }}>
             {[
-              { icon: '🎂', title: 'Birthday Parties', desc: 'Make birthdays memorable with our luxury farm in Gurgaon - perfect for farm stay birthday celebrations' },
-              { icon: '🏢', title: 'Corporate Events', desc: 'Professional atmosphere perfect for team building and meetings' },
-              { icon: '💝', title: 'Anniversary Celebrations', desc: 'Romantic setting for celebrating love and togetherness' },
-              { icon: '🎊', title: 'Graduation Parties', desc: 'Celebrate achievements in style at our premium venue' },
-              { icon: '🍾', title: 'Pool Parties', desc: 'Splash into fun with our private pool and party setup' },
-              { icon: '👨‍👩‍👧‍👦', title: 'Family Gatherings', desc: 'Perfect space for reunions and family celebrations' }
+              { icon: '🎂', title: 'Birthday Parties', desc: 'Farmhouse for birthday party in Gurgaon - Make birthdays memorable with our luxury venue perfect for celebrations' },
+              { icon: '🏢', title: 'Corporate Events', desc: 'Farmhouse for corporate party in Gurgaon - Professional atmosphere perfect for team building and meetings' },
+              { icon: '💝', title: 'Wedding Functions', desc: 'Farmhouse for wedding in Gurgaon - Beautiful venue for intimate weddings and receptions' },
+              { icon: '🎊', title: 'Weekend Getaways', desc: 'Farmhouse near Delhi for weekend stay - Perfect escape from city life with all modern amenities' },
+              { icon: '🍾', title: 'Pool Parties', desc: 'Farmhouse with pool in Gurgaon - Splash into fun with our private pool and party setup' },
+              { icon: '👨‍👩‍👧‍👦', title: 'Family Gatherings', desc: 'Farmhouse for family get-together in Gurgaon - Perfect space for reunions and celebrations' }
             ].map((item, index) => (
               <div key={index} style={{
                 background: 'white',
@@ -295,7 +294,7 @@ export default function PartyPage() {
           marginBottom: '1rem',
           color: '#1a202c'
         }}>
-          Features That Make Us the Best Farm in Gurgaon for Party Celebrations
+          Features That Make Us the Best Farmhouse for Party in Gurgaon
         </h2>
         <div style={{
           width: '100px',
@@ -389,8 +388,8 @@ export default function PartyPage() {
                 a: 'Our farmhouse can comfortably host up to 40-50 guests for celebrations, with sleeping arrangements for up to 15 people.'
               },
               {
-                q: 'What makes Aravali Farm the best farm for party in Gurgaon?',
-                a: 'We offer a perfect combination of a private pool, spacious lawns, modern amenities, and complete privacy – making us the top choice for farm stay experiences, farm rentals, and party celebrations in Gurgaon.'
+                q: 'What makes Aravali Farm the best farmhouse for party in Gurgaon?',
+                a: 'We offer a perfect combination of a private pool, spacious lawns, modern amenities, and complete privacy – making us the top choice for farmhouse for party in Gurgaon, farmhouse for wedding in Gurgaon, and farmhouse for rent in Gurgaon. Located near Delhi NCR, we provide farmhouse with pool, farmhouse with music system, and all amenities for memorable celebrations.'
               },
               {
                 q: 'Do you provide catering services?',
@@ -449,7 +448,7 @@ export default function PartyPage() {
           maxWidth: '700px',
           margin: '0 auto 2.5rem'
         }}>
-          Book Aravali Farm – The Most Luxurious Farm for Parties, Farm Stay & Farm Vacations in Gurgaon
+          Book Aravali Farm – The Best Farmhouse for Party in Gurgaon, Farmhouse for Wedding in Gurgaon, and Farmhouse for Rent in Gurgaon. Perfect for weekend getaways near Delhi NCR.
         </p>
         <div style={{
           display: 'flex',
@@ -508,7 +507,6 @@ export default function PartyPage() {
       </section>
 
       <Footer />
-      <ScrollToTopButton />
     </div>
   )
 }

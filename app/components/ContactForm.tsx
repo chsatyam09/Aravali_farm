@@ -68,8 +68,8 @@ const ContactForm = () => {
   return (
     <section id="contact" style={{
       padding: '4rem 0',
-      background: '#ffffff',
-      color: '#111111'
+      background: 'var(--color-card)',
+      color: 'var(--color-text)'
     }}>
       <div style={{
         maxWidth: '1200px',
@@ -82,7 +82,7 @@ const ContactForm = () => {
         }}>
           <h2 style={{
             fontSize: 'clamp(2rem, 5vw, 3rem)',
-            color: '#111111',
+            color: 'var(--color-text)',
             marginBottom: '1rem',
             letterSpacing: '0.05em'
           }}>
@@ -91,12 +91,12 @@ const ContactForm = () => {
           <div style={{
             width: '6rem',
             height: '2px',
-            background: '#111111',
+            background: 'var(--color-accent)',
             margin: '0 auto 1rem',
           }}></div>
           <p style={{
             fontSize: '1.125rem',
-            color: '#4B5563',
+            color: 'var(--color-text-muted)',
             maxWidth: '600px',
             margin: '0 auto'
           }}>
@@ -115,7 +115,7 @@ const ContactForm = () => {
             <h3 style={{
               fontSize: '1.1rem',
               marginBottom: '1.5rem',
-              color: '#111111',
+              color: 'var(--color-text)',
               fontWeight: '600'
             }}>
               Get in Touch
@@ -129,32 +129,32 @@ const ContactForm = () => {
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <div style={{ fontSize: '1.5rem' }}>📞</div>
                 <div>
-                  <h4 style={{ margin: 0, marginBottom: '0.25rem', color: '#111111' }}>Phone</h4>
-                  <p style={{ margin: 0, color: '#4B5563' }}>+91 98765 43210</p>
+                  <h4 style={{ margin: 0, marginBottom: '0.25rem', color: 'var(--color-text)' }}>Phone</h4>
+                  <p style={{ margin: 0, color: 'var(--color-text-muted)' }}>+91 98765 43210</p>
                 </div>
               </div>
               
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <div style={{ fontSize: '1.5rem' }}>📧</div>
                 <div>
-                  <h4 style={{ margin: 0, marginBottom: '0.25rem', color: '#111111' }}>Email</h4>
-                  <p style={{ margin: 0, color: '#4B5563' }}>info@aravalifarm.com</p>
+                  <h4 style={{ margin: 0, marginBottom: '0.25rem', color: 'var(--color-text)' }}>Email</h4>
+                  <p style={{ margin: 0, color: 'var(--color-text-muted)' }}>info@aravalifarm.com</p>
                 </div>
               </div>
               
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <div style={{ fontSize: '1.5rem' }}>📍</div>
                 <div>
-                  <h4 style={{ margin: 0, marginBottom: '0.25rem', color: '#111111' }}>Location</h4>
-                  <p style={{ margin: 0, color: '#4B5563' }}>Aravali Hills, Gurgaon, Haryana</p>
+                  <h4 style={{ margin: 0, marginBottom: '0.25rem', color: 'var(--color-text)' }}>Location</h4>
+                  <p style={{ margin: 0, color: 'var(--color-text-muted)' }}>Aravali Hills, Gurgaon, Haryana</p>
                 </div>
               </div>
               
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <div style={{ fontSize: '1.5rem' }}>🕒</div>
                 <div>
-                  <h4 style={{ margin: 0, marginBottom: '0.25rem', color: '#111111' }}>Hours</h4>
-                  <p style={{ margin: 0, color: '#4B5563' }}>9:00 AM - 8:00 PM</p>
+                  <h4 style={{ margin: 0, marginBottom: '0.25rem', color: 'var(--color-text)' }}>Hours</h4>
+                  <p style={{ margin: 0, color: 'var(--color-text-muted)' }}>9:00 AM - 8:00 PM</p>
                 </div>
               </div>
             </div>
@@ -162,11 +162,11 @@ const ContactForm = () => {
 
           {/* Contact Form */}
           <div style={{
-            background: '#ffffff',
+            background: 'var(--color-cream)',
             padding: '2rem',
             borderRadius: '12px',
-            border: '1px solid #E5E7EB',
-            boxShadow: '0 8px 16px rgba(0,0,0,0.06)'
+            border: '1px solid var(--color-border)',
+            boxShadow: '0 8px 16px rgba(45, 42, 38, 0.06)'
           }}>
             <form onSubmit={handleSubmit}>
               <div style={{
@@ -179,7 +179,7 @@ const ContactForm = () => {
                   <label style={{
                     display: 'block',
                     marginBottom: '0.5rem',
-                    color: '#374151',
+                    color: 'var(--color-text-muted)',
                     fontSize: '0.9rem'
                   }}>
                     Name *
@@ -194,9 +194,9 @@ const ContactForm = () => {
                       width: '100%',
                       padding: '0.75rem',
                       borderRadius: '6px',
-                      border: '1px solid #E5E7EB',
-                      background: '#ffffff',
-                      color: '#111111',
+                      border: '1px solid var(--color-border)',
+                      background: 'var(--color-card)',
+                      color: 'var(--color-text)',
                       fontSize: '1rem'
                     }}
                     placeholder="Your Name"
@@ -206,7 +206,7 @@ const ContactForm = () => {
                   <label style={{
                     display: 'block',
                     marginBottom: '0.5rem',
-                    color: '#374151',
+                    color: 'var(--color-text-muted)',
                     fontSize: '0.9rem'
                   }}>
                     Email *
@@ -221,9 +221,9 @@ const ContactForm = () => {
                       width: '100%',
                       padding: '0.75rem',
                       borderRadius: '6px',
-                      border: '1px solid #E5E7EB',
-                      background: '#ffffff',
-                      color: '#111111',
+                      border: '1px solid var(--color-border)',
+                      background: 'var(--color-card)',
+                      color: 'var(--color-text)',
                       fontSize: '1rem'
                     }}
                     placeholder="your@email.com"
@@ -241,7 +241,7 @@ const ContactForm = () => {
                   <label style={{
                     display: 'block',
                     marginBottom: '0.5rem',
-                    color: '#374151',
+                    color: 'var(--color-text-muted)',
                     fontSize: '0.9rem'
                   }}>
                     Phone
@@ -255,9 +255,9 @@ const ContactForm = () => {
                       width: '100%',
                       padding: '0.75rem',
                       borderRadius: '6px',
-                      border: '1px solid #E5E7EB',
-                      background: '#ffffff',
-                      color: '#111111',
+                      border: '1px solid var(--color-border)',
+                      background: 'var(--color-card)',
+                      color: 'var(--color-text)',
                       fontSize: '1rem'
                     }}
                     placeholder="Your Phone"
@@ -267,7 +267,7 @@ const ContactForm = () => {
                   <label style={{
                     display: 'block',
                     marginBottom: '0.5rem',
-                    color: '#374151',
+                    color: 'var(--color-text-muted)',
                     fontSize: '0.9rem'
                   }}>
                     Event Type
@@ -280,19 +280,19 @@ const ContactForm = () => {
                       width: '100%',
                       padding: '0.75rem',
                       borderRadius: '6px',
-                      border: '1px solid #E5E7EB',
-                      background: '#ffffff',
-                      color: '#111111',
+                      border: '1px solid var(--color-border)',
+                      background: 'var(--color-card)',
+                      color: 'var(--color-text)',
                       fontSize: '1rem'
                     }}
                   >
-                    <option value="" style={{color: '#333'}}>Select Event Type</option>
-                    <option value="birthday" style={{color: '#333'}}>Birthday Party</option>
-                    <option value="corporate" style={{color: '#333'}}>Corporate Event</option>
-                    <option value="wedding" style={{color: '#333'}}>Wedding Function</option>
-                    <option value="bachelor" style={{color: '#333'}}>Bachelor Party</option>
-                    <option value="family" style={{color: '#333'}}>Family Gathering</option>
-                    <option value="other" style={{color: '#333'}}>Other</option>
+                    <option value="" style={{color: 'var(--color-text)'}}>Select Event Type</option>
+                    <option value="birthday" style={{color: 'var(--color-text)'}}>Birthday Party</option>
+                    <option value="corporate" style={{color: 'var(--color-text)'}}>Corporate Event</option>
+                    <option value="wedding" style={{color: 'var(--color-text)'}}>Wedding Function</option>
+                    <option value="bachelor" style={{color: 'var(--color-text)'}}>Bachelor Party</option>
+                    <option value="family" style={{color: 'var(--color-text)'}}>Family Gathering</option>
+                    <option value="other" style={{color: 'var(--color-text)'}}>Other</option>
                   </select>
                 </div>
               </div>
@@ -307,7 +307,7 @@ const ContactForm = () => {
                   <label style={{
                     display: 'block',
                     marginBottom: '0.5rem',
-                    color: '#374151',
+                    color: 'var(--color-text-muted)',
                     fontSize: '0.9rem'
                   }}>
                     Event Date
@@ -321,9 +321,9 @@ const ContactForm = () => {
                       width: '100%',
                       padding: '0.75rem',
                       borderRadius: '6px',
-                      border: '1px solid #E5E7EB',
-                      background: '#ffffff',
-                      color: '#111111',
+                      border: '1px solid var(--color-border)',
+                      background: 'var(--color-card)',
+                      color: 'var(--color-text)',
                       fontSize: '1rem'
                     }}
                   />
@@ -332,13 +332,12 @@ const ContactForm = () => {
                   <label style={{
                     display: 'block',
                     marginBottom: '0.5rem',
-                    color: '#374151',
+                    color: 'var(--color-text-muted)',
                     fontSize: '0.9rem'
                   }}>
                     Expected Guests
                   </label>
-                  <input
-                    type="number"
+                  <select
                     name="guests"
                     value={formData.guests}
                     onChange={handleChange}
@@ -346,13 +345,24 @@ const ContactForm = () => {
                       width: '100%',
                       padding: '0.75rem',
                       borderRadius: '6px',
-                      border: '1px solid #E5E7EB',
-                      background: '#ffffff',
-                      color: '#111111',
-                      fontSize: '1rem'
+                      border: '1px solid var(--color-border)',
+                      background: 'var(--color-card)',
+                      color: 'var(--color-text)',
+                      fontSize: '1rem',
+                      cursor: 'pointer'
                     }}
-                    placeholder="Number of guests"
-                  />
+                  >
+                    <option value="">Select guests</option>
+                    <option value="1-5">1-5</option>
+                    <option value="6-8">6-8</option>
+                    <option value="9-12">9-12</option>
+                    <option value="13-17">13-17</option>
+                    <option value="18-25">18-25</option>
+                    <option value="25-30">25-30</option>
+                    <option value="30+">30+</option>
+                    <option value="50+">50+</option>
+                    <option value="100+">100+</option>
+                  </select>
                 </div>
               </div>
 
@@ -360,7 +370,7 @@ const ContactForm = () => {
                 <label style={{
                   display: 'block',
                   marginBottom: '0.5rem',
-                  color: '#374151',
+                  color: 'var(--color-text-muted)',
                   fontSize: '0.9rem'
                 }}>
                   Message
@@ -374,9 +384,9 @@ const ContactForm = () => {
                     width: '100%',
                     padding: '0.75rem',
                     borderRadius: '6px',
-                    border: '1px solid #E5E7EB',
-                    background: '#ffffff',
-                    color: '#111111',
+                    border: '1px solid var(--color-border)',
+                    background: 'var(--color-card)',
+                    color: 'var(--color-text)',
                     fontSize: '1rem',
                     resize: 'vertical'
                   }}
@@ -388,7 +398,7 @@ const ContactForm = () => {
                 type="submit"
                 style={{
                   width: '100%',
-                  background: '#111111',
+                  background: 'var(--color-accent)',
                   color: 'white',
                   padding: '1rem',
                   fontSize: '1rem',
@@ -402,12 +412,12 @@ const ContactForm = () => {
                 }}
                 onMouseOver={(e) => {
                   const target = e.target as HTMLButtonElement;
-                  target.style.background = '#222222';
+                  target.style.background = 'var(--color-accent-hover)';
                   target.style.transform = 'translateY(-2px)';
                 }}
                 onMouseOut={(e) => {
                   const target = e.target as HTMLButtonElement;
-                  target.style.background = '#111111';
+                  target.style.background = 'var(--color-accent-hover)';
                   target.style.transform = 'translateY(0)';
                 }}
               >

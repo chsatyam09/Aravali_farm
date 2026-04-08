@@ -5,15 +5,15 @@ import { useState, useEffect } from 'react'
 const Slideshow = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
 
-  // Use your images from the public folder
+  // Use your images from the public folder with SEO-optimized alt tags
   const slides = [
-    { image: '/Images/Aravali Farm Images/Property-1.png', alt: 'Property' },
-    { image: '/Images/Aravali Farm Images/property-2.jpg', alt: 'Property' },
-    { image: '/Images/Aravali Farm Images/Born_FIre-1.png', alt: 'Bonfire' },
-    { image: '/Images/Aravali Farm Images/Graden-1.png', alt: 'Garden' },
-    { image: '/Images/Aravali Farm Images/Pool-1.png', alt: 'Pool' },
-    { image: '/Images/Aravali Farm Images/Living Room 2.jpg', alt: 'Living Room' },
-    { image: '/Images/Aravali Farm Images/Serprate_Sitting_Area-1.png ', alt: 'Living Room' },
+    { image: '/Images/Aravali Farm Images/Property-1.png', alt: 'Luxury Farmhouse in Gurgaon with Private Pool and Lush Green Lawn' },
+    { image: '/Images/Aravali Farm Images/property-2.jpg', alt: 'Farmhouse for Party in Gurgaon - Premium Venue for Celebrations' },
+    { image: '/Images/Aravali Farm Images/Born_FIre-1.png', alt: 'Farmhouse with Bonfire Setup in Delhi NCR - Perfect for Evening Gatherings' },
+    { image: '/Images/Aravali Farm Images/Graden-1.png', alt: 'Farmhouse with Garden in Gurgaon - Beautiful Outdoor Space for Events' },
+    { image: '/Images/Aravali Farm Images/Pool-1.png', alt: 'Farmhouse with Pool in Gurgaon - Private Swimming Pool for Pool Parties' },
+    { image: '/Images/Aravali Farm Images/Living Room 2.jpg', alt: 'Luxury Farmhouse Living Room in Gurgaon - Modern and Comfortable' },
+    { image: '/Images/Aravali Farm Images/Serprate_Sitting_Area-1.png ', alt: 'Farmhouse Sitting Area in Gurgaon - Spacious Indoor Space' },
     
   ]
 
@@ -108,11 +108,13 @@ const Slideshow = () => {
       <p style={{
         color: 'white',
         fontSize: 'clamp(1rem, 4vw, 1.25rem)',
+            fontFamily: "'Poppins', sans-serif",
         letterSpacing: '0.2em',
-        fontWeight: '300'
+        fontWeight: '200'
       }}>
-        Luxury • Nature • Celebrations
+        Luxury Farmhouse in Gurgaon with Private Pool 
       </p>
+
 
     </div>
 
@@ -125,29 +127,29 @@ const Slideshow = () => {
     marginTop: '3rem',
     padding: '0.75rem 2.3rem',
     fontSize: '1.125rem',
-    fontWeight: '300',
-    letterSpacing: '1.5px',
+    fontWeight: '500',
+    letterSpacing: '0.1em',
     fontFamily: '"Poppins", "Helvetica Neue", Arial, sans-serif',
-    border: '1px solid #ffffffff',
+    border: '2px solid rgba(255, 255, 255, 0.95)',
     cursor: 'pointer',
-    transition: 'all 0.4s ease',
+    transition: 'all 0.3s ease',
     borderRadius: '10px',
     position: 'relative',
     overflow: 'hidden',
   }}
   onMouseOver={(e) => {
     const target = e.target as HTMLButtonElement
-    target.style.background = '#efe8e8ff'
-    target.style.color = 'black'
-    // target.style.border = '2px solid black'
+    target.style.background = 'var(--color-cream)'
+    target.style.color = 'var(--color-sage-dark)'
+    target.style.borderColor = 'var(--color-cream)'
     target.style.transform = 'translateY(-4px) scale(1.05)'
-    target.style.boxShadow = '0 6px 20px rgba(255, 255, 255, 0.2)'
+    target.style.boxShadow = '0 8px 24px rgba(45, 42, 38, 0.2)'
   }}
   onMouseOut={(e) => {
     const target = e.target as HTMLButtonElement
     target.style.background = 'transparent'
-    target.style.color = '#fffdfdff'
-    target.style.border = '1px solid white'
+    target.style.color = 'white'
+    target.style.borderColor = 'rgba(255, 255, 255, 0.95)'
     target.style.transform = 'translateY(0) scale(1)'
     target.style.boxShadow = 'none'
   }}

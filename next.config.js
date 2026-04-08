@@ -5,4 +5,10 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+module.exports = {
+
+  output: 'export', // Tells Next to produce a static export (out/)
+
+  // trailingSlash: true, // optional if you want folder-based routes like /about/index.html
+
+}

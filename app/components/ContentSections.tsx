@@ -6,7 +6,7 @@ const ContentSections = () => {
       {/* Overview Section */}
       <section id="overview" style={{
         padding: '4rem 0',
-        background: 'white'
+        background: 'var(--color-card)'
       }}>
         <div style={{
           maxWidth: '1200px',
@@ -15,17 +15,17 @@ const ContentSections = () => {
         }}>
           <h2 style={{
             fontSize: 'clamp(2rem, 5vw, 3rem)',
-            color: '#111111',
+            color: 'var(--color-text)',
             marginBottom: '2rem',
             textAlign: 'center',
             letterSpacing: '0.05em'
           }}>
-            Overview
+            About Our Luxury Farmhouse in Gurgaon
           </h2>
           <div style={{
             width: '6rem',
             height: '2px',
-            background: '#111111',
+            background: 'var(--color-accent)',
             margin: '0 auto 3rem',
           }}></div>
           <div style={{
@@ -34,19 +34,21 @@ const ContentSections = () => {
             gap: '2rem'
           }} className="content-grid">
             <div>
-              <h3 style={{ color: '#111111', marginBottom: '1rem', fontSize: '1.5rem' }}>About Aravali Farm</h3>
-              <p style={{ color: '#666', lineHeight: '1.7', fontSize: '1.1rem' }}>
-                Nestled in the serene beauty of nature, Aravali Farm offers the perfect escape from city life. 
-                Our beautiful property combines luxury with rustic charm, creating an ideal venue for celebrations, 
-                corporate events, and peaceful getaways.
+              <h3 style={{ color: 'var(--color-text)', marginBottom: '1rem', fontSize: '1.5rem' }}>Best Farmhouse Near Gurgaon for Parties & Weekend Stays</h3>
+              <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7', fontSize: '1.1rem' }}>
+                Nestled in the serene beauty of nature, Aravali Farm is the best farmhouse near Gurgaon offering the perfect escape from city life. 
+                Our luxury farmhouse in Gurgaon combines modern amenities with rustic charm, creating an ideal venue for farmhouse for party in Gurgaon, 
+                farmhouse for wedding in Gurgaon, and farmhouse near Delhi for weekend stay. Located in Delhi NCR, we provide farmhouse with pool in Gurgaon, 
+                spacious lawns, and all amenities for memorable celebrations.
               </p>
             </div>
             <div>
-              <h3 style={{ color: '#111111', marginBottom: '1rem', fontSize: '1.5rem' }}>Our Mission</h3>
-              <p style={{ color: '#666', lineHeight: '1.7', fontSize: '1.1rem' }}>
+              <h3 style={{ color: 'var(--color-text)', marginBottom: '1rem', fontSize: '1.5rem' }}>Private Farmhouse Near Delhi NCR</h3>
+              <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.7', fontSize: '1.1rem' }}>
                 We strive to provide exceptional hospitality in a natural setting, creating memorable experiences 
-                for our guests while maintaining harmony with the environment. Every event is crafted with attention 
-                to detail and personalized service.
+                for our guests. Our farmhouse for rent in Gurgaon is perfect for farmhouse for birthday party in Gurgaon, 
+                farmhouse for corporate party in Gurgaon, and farmhouse for family get-together in Gurgaon. Every event is crafted with attention 
+                to detail and personalized service, making us the top choice for affordable farmhouse in Delhi NCR.
               </p>
             </div>
           </div>
@@ -56,7 +58,7 @@ const ContentSections = () => {
       {/* Amenities Section */}
       <section id="amenities" style={{
         padding: '4rem 0',
-        background: '#f8f8f8'
+        background: 'var(--color-cream-section)'
       }}>
         <div style={{
           maxWidth: '1200px',
@@ -65,7 +67,7 @@ const ContentSections = () => {
         }}>
           <h2 style={{
             fontSize: 'clamp(2rem, 5vw, 3rem)',
-            color: '#111111',
+            color: 'var(--color-text)',
             marginBottom: '2rem',
             textAlign: 'center',
             letterSpacing: '0.05em'
@@ -75,7 +77,7 @@ const ContentSections = () => {
           <div style={{
             width: '6rem',
             height: '2px',
-            background: '#111111',
+            background: 'var(--color-accent)',
             margin: '0 auto 3rem',
           }}></div>
           <div style={{
@@ -84,24 +86,25 @@ const ContentSections = () => {
             gap: '2rem'
           }} className="amenities-grid">
             {[
-              { title: 'Swimming Pool', icon: '🏊', description: 'Large swimming pool with crystal clear water' },
-              { title: 'Garden Area', icon: '🌿', description: 'Beautiful landscaped gardens for relaxation' },
-              { title: 'Event Spaces', icon: '🎉', description: 'Multiple venues for different types of events' },
-              { title: 'Parking', icon: '🚗', description: 'Ample parking space for guests' },
-              { title: 'Catering', icon: '🍽️', description: 'Professional catering services available' },
-              { title: 'Sound System', icon: '🎵', description: 'High-quality audio equipment for events' }
+              { title: 'Private Swimming Pool', icon: '🏊', description: 'Farmhouse with pool in Gurgaon - Large swimming pool perfect for pool parties and relaxation' },
+              { title: 'Lush Green Garden', icon: '🌿', description: 'Beautiful 5000+ sq ft landscaped garden area for outdoor events and relaxation' },
+              { title: 'Spacious Event Spaces', icon: '🎉', description: 'Multiple venues perfect for farmhouse for party in Gurgaon, weddings, and corporate events' },
+              { title: 'Ample Parking', icon: '🚗', description: 'Free parking space for 6+ vehicles, ideal for farmhouse booking in Gurgaon' },
+              { title: 'Professional Catering', icon: '🍽️', description: 'Catering services available for farmhouse for wedding in Gurgaon and celebrations' },
+              { title: 'Premium Sound System', icon: '🎵', description: 'Farmhouse with music system - High-quality audio equipment for events until 4 AM' }
             ].map((amenity, index) => (
               <div key={index} style={{
-                background: 'white',
+                background: 'var(--color-card)',
                 padding: '2rem',
                 borderRadius: '8px',
                 textAlign: 'center',
-                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-                transition: 'transform 0.3s ease'
+                boxShadow: '0 4px 12px rgba(45, 42, 38, 0.08)',
+                transition: 'transform 0.3s ease',
+                border: '1px solid var(--color-border)'
               }}>
                 <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>{amenity.icon}</div>
-                <h3 style={{ color: '#111111', marginBottom: '0.5rem', fontSize: '1.25rem' }}>{amenity.title}</h3>
-                <p style={{ color: '#666', lineHeight: '1.6' }}>{amenity.description}</p>
+                <h3 style={{ color: 'var(--color-text)', marginBottom: '0.5rem', fontSize: '1.25rem' }}>{amenity.title}</h3>
+                <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.6' }}>{amenity.description}</p>
               </div>
             ))}
           </div>
@@ -111,7 +114,7 @@ const ContentSections = () => {
       {/* Reviews Section */}
       <section id="reviews" style={{
         padding: '4rem 0',
-        background: 'white'
+        background: 'var(--color-card)'
       }}>
         <div style={{
           maxWidth: '1200px',
@@ -120,7 +123,7 @@ const ContentSections = () => {
         }}>
           <h2 style={{
             fontSize: 'clamp(2rem, 5vw, 3rem)',
-            color: '#111111',
+            color: 'var(--color-text)',
             marginBottom: '2rem',
             textAlign: 'center',
             letterSpacing: '0.05em'
@@ -130,7 +133,7 @@ const ContentSections = () => {
           <div style={{
             width: '6rem',
             height: '2px',
-            background: '#111111',
+            background: 'var(--color-accent)',
             margin: '0 auto 3rem',
           }}></div>
           <div style={{
@@ -159,10 +162,10 @@ const ContentSections = () => {
               }
             ].map((review, index) => (
               <div key={index} style={{
-                background: '#f8f8f8',
+                background: 'var(--color-cream-section)',
                 padding: '2rem',
                 borderRadius: '8px',
-                border: '1px solid #e0e0e0'
+                border: '1px solid var(--color-border)'
               }}>
                 <div style={{ marginBottom: '1rem' }}>
                   <div style={{
@@ -171,12 +174,12 @@ const ContentSections = () => {
                     alignItems: 'center',
                     marginBottom: '0.5rem'
                   }}>
-                    <h4 style={{ color: '#111111', fontSize: '1.1rem', margin: 0 }}>{review.name}</h4>
-                    <div style={{ color: '#111111' }}>{'★'.repeat(review.rating)}</div>
+                    <h4 style={{ color: 'var(--color-text)', fontSize: '1.1rem', margin: 0 }}>{review.name}</h4>
+                    <div style={{ color: 'var(--color-accent)' }}>{'★'.repeat(review.rating)}</div>
                   </div>
-                  <p style={{ color: '#999', fontSize: '0.9rem', margin: 0 }}>{review.event}</p>
+                  <p style={{ color: 'var(--color-text-muted)', fontSize: '0.9rem', margin: 0 }}>{review.event}</p>
                 </div>
-                <p style={{ color: '#666', lineHeight: '1.6', fontStyle: 'italic' }}>
+                <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.6', fontStyle: 'italic' }}>
                   "{review.review}"
                 </p>
               </div>
@@ -188,7 +191,7 @@ const ContentSections = () => {
       {/* FAQ Section */}
       <section id="faq" style={{
         padding: '4rem 0',
-        background: '#f8f8f8'
+        background: 'var(--color-cream-section)'
       }}>
         <div style={{
           maxWidth: '1200px',
@@ -197,7 +200,7 @@ const ContentSections = () => {
         }}>
           <h2 style={{
             fontSize: 'clamp(2rem, 5vw, 3rem)',
-            color: '#111111',
+            color: 'var(--color-text)',
             marginBottom: '2rem',
             textAlign: 'center',
             letterSpacing: '0.05em'
@@ -207,7 +210,7 @@ const ContentSections = () => {
           <div style={{
             width: '6rem',
             height: '2px',
-            background: '#111111',
+            background: 'var(--color-accent)',
             margin: '0 auto 3rem',
           }}></div>
           <div style={{
@@ -240,20 +243,21 @@ const ContentSections = () => {
               }
             ].map((faq, index) => (
               <div key={index} style={{
-                background: 'white',
+                background: 'var(--color-card)',
                 padding: '1.5rem',
                 borderRadius: '8px',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+                boxShadow: '0 2px 8px rgba(45, 42, 38, 0.08)',
+                border: '1px solid var(--color-border)'
               }}>
                 <h4 style={{ 
-                  color: '#111111', 
+                  color: 'var(--color-text)', 
                   marginBottom: '1rem',
                   fontSize: '1.1rem',
                   fontWeight: '600'
                 }}>
                   {faq.question}
                 </h4>
-                <p style={{ color: '#666', lineHeight: '1.6', margin: 0 }}>
+                <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.6', margin: 0 }}>
                   {faq.answer}
                 </p>
               </div>

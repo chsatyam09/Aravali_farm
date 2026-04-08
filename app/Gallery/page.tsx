@@ -3,8 +3,6 @@
 import Navigationforgallery from '@/app/components/Navigationforgallery'
 import PropertyGallery from '@/app/components/PropertyGallery'
 import Footer from '@/app/components/Footer'
-import ScrollToTopButton from '@/app/components/ScrollToTopButton'
-
 export default function GalleryPage() {
   return (
     <div style={{ 
@@ -102,8 +100,6 @@ export default function GalleryPage() {
         <PropertyGallery />
         <Footer />
         
-        {/* Scroll to Top Button - appears only when footer is visible */}
-        <ScrollToTopButton />
       </main>
     </div>
   )

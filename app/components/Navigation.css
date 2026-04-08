@@ -6,10 +6,10 @@
   transition: all 0.3s ease;
   border-radius: 0;
   background: transparent;
-  color: #333;
+  color: var(--color-text-muted);
 }
 .nav-button:hover {
-  color: #111;
+  color: var(--color-text);
   transform: translateY(-1px);
 }
 .nav-link {
@@ -23,11 +23,122 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background: #111;
+  background: var(--color-accent);
   transition: all 0.3s ease;
   transform: translateX(-50%);
 }
 
 .nav-button:hover::after {
   width: 80%;
+}
+
+/* Desktop vs mobile nav visibility */
+.nav-desktop-only {
+  display: block;
+}
+
+.nav-mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-desktop-only {
+    display: none !important;
+  }
+
+  .nav-mobile-only {
+    display: block !important;
+  }
+
+  .nav-root {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Mobile header bar - dark rounded UI (image style) */
+.nav-mobile-only {
+  padding: 0.75rem 1rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.nav-mobile-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+.nav-mobile-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-mobile-logo-img {
+  height: 44px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
+}
+
+.nav-mobile-hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.nav-mobile-hamburger svg {
+  width: 24px;
+  height: 24px;
+}
+
+.nav-mobile-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 1rem;
+  right: 1rem;
+  margin-top: 0.5rem;
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav-mobile-dropdown-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.nav-mobile-dropdown-link:hover {
+  background: var(--color-cream-section);
 }

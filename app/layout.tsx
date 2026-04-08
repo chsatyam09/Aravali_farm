@@ -7,22 +7,35 @@ const inter = localFont({
 })
 
 export const metadata = {
-  title: 'Farm House in Gurgaon | Aravali Farm – Luxury Pool & Party Venue',
-  description: 'Book Aravali Farm, a premium farmhouse in Gurgaon with a private pool & lush lawns. Ideal for parties, birthdays, weddings & corporate events.',
-  keywords: 'farmhouse in gurgaon, my farm gurgaon, farm in gurgaon, farmhouse for party, luxury farmhouse gurgaon, farmhouse with pool gurgaon, private farmhouse rent gurgaon, weekend farm stay gurgaon, farm stay gurgaon, farm rental gurgaon, farm house rental gurgaon, farm vacation gurgaon, organic farm gurgaon, farm retreat gurgaon, weekend getaway gurgaon, corporate party farmhouse, birthday party farmhouse, pool party venue gurgaon, farm house gurgaon, farm in gurgaon for rent, my farm in gurgaon',
+  title: 'Luxury Farmhouse in Gurgaon | Private Pool & Party Venue | Aravali Farm',
+  description: 'Book premium farmhouses in Gurgaon, Delhi NCR for pool parties, weddings, and weekend stays. Private, green, and luxurious spaces perfect for any occasion. Farmhouse for party in Gurgaon, farmhouse with pool, farmhouse for rent in Gurgaon.',
+  keywords: 'farmhouse in gurgaon, farmhouse in delhi, farmhouse in delhi ncr, farmhouse for party in gurgaon, farmhouse for rent in gurgaon, farmhouse for wedding in gurgaon, farmhouse for birthday party in gurgaon, farmhouse with pool in gurgaon, luxury farmhouse in gurgaon, farmhouse near sohna road gurgaon, farmhouse near delhi for weekend stay, private farmhouse near delhi ncr, farmhouse for day outing in gurgaon, farmhouse for corporate party in gurgaon, farmhouse for family get-together in gurgaon, best farmhouse near gurgaon, affordable farmhouse in delhi ncr, farmhouse booking in gurgaon, pool party farmhouse near delhi, farmhouse for couples near delhi, weekend getaway farmhouse gurgaon, farmhouse with bbq setup, farmhouse with music system, luxury stays near gurgaon, farmhouse for photoshoot in gurgaon, farmhouse for picnic near delhi ncr, farmhouse on rent for one day, farmhouse with indoor games, private pool farmhouse in delhi ncr',
   icons: {
     icon: "/favicon.ico",   
   },
   openGraph: {
-    title: 'Farm House in Gurgaon | Aravali Farm – Luxury Pool & Party Venue',
-    description: 'Book Aravali Farm, a premium farmhouse in Gurgaon with a private pool & lush lawns. Ideal for parties, birthdays, weddings & corporate events.',
+    title: 'Luxury Farmhouse in Gurgaon | Private Pool & Party Venue | Aravali Farm',
+    description: 'Book premium farmhouses in Gurgaon, Delhi NCR for pool parties, weddings, and weekend stays. Private, green, and luxurious spaces perfect for any occasion.',
     type: 'website',
+    url: 'https://aravalifarm.com',
+    images: [
+      {
+        url: '/Images/Aravali Farm Images/Pool-1.png',
+        width: 1200,
+        height: 630,
+        alt: 'Luxury Farmhouse in Gurgaon with Private Pool',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Farm House in Gurgaon | Aravali Farm',
-    description: 'Premium farmhouse in Gurgaon with pool & lush lawns.',
-  }
+    title: 'Luxury Farmhouse in Gurgaon | Private Pool & Party Venue',
+    description: 'Book premium farmhouses in Gurgaon, Delhi NCR for pool parties, weddings, and weekend stays.',
+    images: ['/Images/Aravali Farm Images/Pool-1.png'],
+  },
+  alternates: {
+    canonical: 'https://aravalifarm.com',
+  },
 }
 
 export default function RootLayout({
@@ -32,13 +45,16 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'EventVenue',
-    name: 'Aravali Farm',
-    description: 'Premium farmhouse in Gurgaon with private pool and lush lawns. Perfect for parties, corporate events, and weekend getaways.',
+    '@type': ['LodgingBusiness', 'EventVenue', 'Hotel'],
+    name: 'Aravali Farm - Luxury Farmhouse in Gurgaon',
+    description: 'Premium luxury farmhouse in Gurgaon, Delhi NCR with private pool, lush lawns, and modern amenities. Perfect for farmhouse for party in Gurgaon, farmhouse for wedding in Gurgaon, farmhouse for birthday party in Gurgaon, and weekend stays near Delhi.',
+    image: 'https://aravalifarm.com/Images/Aravali Farm Images/Pool-1.png',
     address: {
       '@type': 'PostalAddress',
+      streetAddress: 'Aravali Farm',
       addressLocality: 'Gurgaon',
       addressRegion: 'Haryana',
+      postalCode: '122001',
       addressCountry: 'IN'
     },
     geo: {
@@ -49,6 +65,11 @@ export default function RootLayout({
     url: 'https://aravalifarm.com',
     telephone: '+91-7903962473',
     priceRange: '₹₹',
+    starRating: {
+      '@type': 'Rating',
+      ratingValue: '4.5',
+      bestRating: '5'
+    },
     amenityFeature: [
       {
         '@type': 'LocationFeatureSpecification',
@@ -74,13 +95,54 @@ export default function RootLayout({
         '@type': 'LocationFeatureSpecification',
         name: 'BBQ Area',
         value: true
+      },
+      {
+        '@type': 'LocationFeatureSpecification',
+        name: 'Bonfire',
+        value: true
+      },
+      {
+        '@type': 'LocationFeatureSpecification',
+        name: 'Sound System',
+        value: true
+      },
+      {
+        '@type': 'LocationFeatureSpecification',
+        name: 'Garden',
+        value: true
       }
-    ]
+    ],
+    servesCuisine: 'Indian',
+    acceptsReservations: 'https://aravalifarm.com/contact',
+    areaServed: {
+      '@type': 'City',
+      name: 'Gurgaon'
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.5',
+      reviewCount: '50'
+    }
   }
 
   return (
     <html lang="en">
       <head>
+        {/* Google tag (gtag.js) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-1NZK6KW20J"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-1NZK6KW20J');
+            `,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
